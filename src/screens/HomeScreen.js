@@ -60,7 +60,7 @@ export default function HomeScreen({ navigation }) {
 
   if (!tournament) {
     return (
-      <ScrollView style={s.container} contentContainerStyle={s.content}>
+      <View style={s.screen}>
         <Animated.View entering={FadeIn.duration(300)} style={s.header}>
           <View>
             <Text style={s.title}>Golf Partner</Text>
@@ -79,6 +79,7 @@ export default function HomeScreen({ navigation }) {
           </View>
         </Animated.View>
 
+        <ScrollView style={s.scrollView} contentContainerStyle={s.content}>
         <Animated.View entering={FadeInDown.delay(100).duration(300).springify()}>
           <TouchableOpacity style={s.primaryBtn} onPress={() => navigation.navigate('Setup')} activeOpacity={0.8}>
             <Feather name="plus" size={18} color={theme.isDark ? theme.accent.primary : theme.text.inverse} />
@@ -130,7 +131,8 @@ export default function HomeScreen({ navigation }) {
               })}
           </>
         )}
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 
@@ -151,7 +153,7 @@ export default function HomeScreen({ navigation }) {
     : tournamentLeaderboard(tournament);
 
   return (
-    <ScrollView style={s.container} contentContainerStyle={s.content}>
+    <View style={s.screen}>
       <Animated.View entering={FadeIn.duration(300)} style={s.header}>
         <View style={s.headerLeft}>
           <TouchableOpacity onPress={goToList} style={s.backBtn} activeOpacity={0.7}>
@@ -166,6 +168,7 @@ export default function HomeScreen({ navigation }) {
         </View>
       </Animated.View>
 
+      <ScrollView style={s.scrollView} contentContainerStyle={s.content}>
       <Animated.View entering={FadeInDown.delay(50).duration(300)}>
         <Text style={s.tournamentDetailName}>{tournament.name}</Text>
       </Animated.View>
@@ -322,6 +325,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={s.deleteBtnText}>Eliminar Torneo</Text>
       </TouchableOpacity>
     </ScrollView>
+    </View>
   );
 }
 
@@ -380,11 +384,12 @@ function BestBallRoundCard({ round, players, settings, theme, s }) {
 }
 
 const makeStyles = (t) => StyleSheet.create({
-  container: { flex: 1, backgroundColor: t.bg.primary },
-  content: { padding: 20, paddingTop: 16, paddingBottom: 40 },
+  screen: { flex: 1, backgroundColor: t.bg.primary },
+  scrollView: { flex: 1 },
+  content: { padding: 20, paddingTop: 16, paddingBottom: 100 },
 
   // Header
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, paddingTop: 8 },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 12, backgroundColor: t.bg.primary },
   headerLeft: { flexDirection: 'row', alignItems: 'center' },
   headerActions: { flexDirection: 'row', gap: 8 },
   title: { fontFamily: 'PlusJakartaSans-ExtraBold', fontSize: 28, color: t.text.primary, letterSpacing: -0.5 },

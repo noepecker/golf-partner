@@ -332,7 +332,7 @@ const makeStyles = (theme) => StyleSheet.create({
   backBtn: {},
   headerTitle: { fontFamily: 'PlusJakartaSans-Bold', fontSize: 17, color: theme.text.primary },
   container: { flex: 1 },
-  content: { padding: 20, paddingTop: 4, paddingBottom: 40 },
+  content: { padding: 20, paddingTop: 4, paddingBottom: 100 },
   sectionTitle: {
     fontFamily: 'PlusJakartaSans-Bold', color: theme.accent.primary,
     fontSize: 11, marginTop: 24, marginBottom: 8, flex: 1,

@@ -234,7 +234,7 @@ const makeStyles = (theme) => StyleSheet.create({
   backBtn: {},
   headerTitle: { fontFamily: 'PlusJakartaSans-Bold', fontSize: 17, color: theme.text.primary },
   container: { flex: 1 },
-  content: { padding: 20, paddingTop: 4, paddingBottom: 40 },
+  content: { padding: 20, paddingTop: 4, paddingBottom: 100 },
   title: {
     fontFamily: 'PlusJakartaSans-ExtraBold', fontSize: 24,
     color: theme.accent.primary, letterSpacing: -0.5,

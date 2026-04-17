@@ -126,8 +126,8 @@ export default function SetupScreen({ navigation }) {
   }
 
   return (
-    <ScrollView style={s.container} contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
-      {/* Header */}
+    <View style={s.screen}>
+      {/* Header - OUTSIDE ScrollView */}
       <Animated.View entering={FadeIn.duration(300)} style={s.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={s.backBtn}>
           <Feather name="chevron-left" size={22} color={theme.accent.primary} />
@@ -136,6 +136,7 @@ export default function SetupScreen({ navigation }) {
         <View style={{ width: 22 }} />
       </Animated.View>
 
+      <ScrollView style={s.scrollView} contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
       {/* Tournament Name */}
       <View>
         <Text style={s.label}>Tournament Name</Text>
@@ -306,14 +307,18 @@ export default function SetupScreen({ navigation }) {
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </View>
   );
 }
 
 function makeStyles(theme) {
   return StyleSheet.create({
-    container: {
+    screen: {
       flex: 1,
       backgroundColor: theme.bg.primary,
+    },
+    scrollView: {
+      flex: 1,
     },
     content: {
       padding: 20,
@@ -326,8 +331,10 @@ function makeStyles(theme) {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginBottom: 24,
-      paddingTop: 4,
+      paddingHorizontal: 20,
+      paddingTop: 16,
+      paddingBottom: 12,
+      backgroundColor: theme.bg.primary,
     },
     backBtn: {
       width: 36,

@@ -73,7 +73,7 @@ export default function PlayerPickerScreen({ navigation, route }) {
         <View style={{ width: 22 }} />
       </View>
 
-      <ScrollView contentContainerStyle={s.content} automaticallyAdjustKeyboardInsets>
+      <ScrollView style={s.scrollView} contentContainerStyle={s.content} automaticallyAdjustKeyboardInsets>
         <Text style={s.sectionTitle}>New Player</Text>
         <View style={s.form}>
           <TextInput
@@ -170,7 +170,8 @@ const makeStyles = (theme) => StyleSheet.create({
     fontSize: 17,
     color: theme.text.primary,
   },
-  content: { padding: 20, paddingTop: 8, paddingBottom: 40 },
+  scrollView: { flex: 1 },
+  content: { padding: 20, paddingTop: 8, paddingBottom: 100 },
   sectionTitle: {
     color: theme.text.muted,
     fontFamily: 'PlusJakartaSans-SemiBold',

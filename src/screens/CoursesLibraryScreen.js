@@ -140,7 +140,7 @@ const makeStyles = (theme) => StyleSheet.create({
   backBtn: {},
   headerTitle: { fontFamily: 'PlusJakartaSans-Bold', fontSize: 17, color: theme.text.primary },
   scroll: { flex: 1 },
-  content: { padding: 20, paddingTop: 4, paddingBottom: 40 },
+  content: { padding: 20, paddingTop: 4, paddingBottom: 100 },
   sectionTitle: {
     fontFamily: 'PlusJakartaSans-SemiBold', color: theme.text.muted, fontSize: 11,
     marginBottom: 12, marginTop: 16, letterSpacing: 1.8, textTransform: 'uppercase',

@@ -186,7 +186,7 @@ const makeStyles = (theme) => StyleSheet.create({
   backBtn: {},
   headerTitle: { fontFamily: 'PlusJakartaSans-Bold', fontSize: 17, color: theme.text.primary },
   scroll: { flex: 1 },
-  content: { padding: 20, paddingTop: 4, paddingBottom: 40 },
+  content: { padding: 20, paddingTop: 4, paddingBottom: 100 },
   nameInput: {
     backgroundColor: theme.isDark ? theme.bg.secondary : theme.bg.card,
     color: theme.text.primary, borderRadius: 10, borderWidth: 1,
