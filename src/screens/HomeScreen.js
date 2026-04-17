@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Switch, Alert, FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+
 import { useTheme } from '../theme/ThemeContext';
 import {
   loadTournament, loadAllTournaments, saveTournament,
@@ -61,7 +61,7 @@ export default function HomeScreen({ navigation }) {
   if (!tournament) {
     return (
       <View style={s.screen}>
-        <Animated.View entering={FadeIn.duration(300)} style={s.header}>
+        <View style={s.header}>
           <View>
             <Text style={s.title}>Golf Partner</Text>
             <Text style={s.subtitle}>{allTournaments.length} {allTournaments.length === 1 ? 'torneo' : 'torneos'}</Text>
@@ -77,22 +77,22 @@ export default function HomeScreen({ navigation }) {
               <Feather name="map" size={18} color={theme.accent.primary} />
             </TouchableOpacity>
           </View>
-        </Animated.View>
+        </View>
 
         <ScrollView style={s.scrollView} contentContainerStyle={s.content}>
-        <Animated.View entering={FadeInDown.delay(100).duration(300).springify()}>
+        <View>
           <TouchableOpacity style={s.primaryBtn} onPress={() => navigation.navigate('Setup')} activeOpacity={0.8}>
             <Feather name="plus" size={18} color={theme.isDark ? theme.accent.primary : theme.text.inverse} />
             <Text style={s.primaryBtnText}>Nuevo Torneo</Text>
           </TouchableOpacity>
-        </Animated.View>
+        </View>
 
         {allTournaments.length === 0 ? (
-          <Animated.View entering={FadeInDown.delay(200).duration(400)} style={s.emptyState}>
+          <View style={s.emptyState}>
             <Feather name="flag" size={48} color={theme.text.muted} />
             <Text style={s.emptyTitle}>Sin torneos aún</Text>
             <Text style={s.emptySubtitle}>Crea tu primer torneo para empezar a jugar</Text>
-          </Animated.View>
+          </View>
         ) : (
           <>
             <Text style={s.sectionLabel}>TORNEOS</Text>
@@ -103,7 +103,7 @@ export default function HomeScreen({ navigation }) {
                 const played = t.rounds.filter((r) => r.scores && Object.keys(r.scores).length > 0).length;
                 const isActive = played < t.rounds.length;
                 return (
-                  <Animated.View key={t.id} entering={FadeInDown.delay(150 + index * 50).duration(300).springify()}>
+                  <View key={t.id}>
                     <TouchableOpacity style={s.tournamentCard} onPress={() => selectTournament(t.id)} activeOpacity={0.7}>
                       <View style={s.tournamentCardLeft}>
                         <View style={s.tournamentCardHeader}>
@@ -126,7 +126,7 @@ export default function HomeScreen({ navigation }) {
                         <Feather name="trash-2" size={14} color={theme.destructive} />
                       </TouchableOpacity>
                     </TouchableOpacity>
-                  </Animated.View>
+                  </View>
                 );
               })}
           </>
@@ -154,7 +154,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={s.screen}>
-      <Animated.View entering={FadeIn.duration(300)} style={s.header}>
+      <View style={s.header}>
         <View style={s.headerLeft}>
           <TouchableOpacity onPress={goToList} style={s.backBtn} activeOpacity={0.7}>
             <Feather name="chevron-left" size={20} color={theme.accent.primary} />
@@ -166,14 +166,14 @@ export default function HomeScreen({ navigation }) {
             <Feather name={mode === 'dark' ? 'sun' : 'moon'} size={18} color={theme.accent.primary} />
           </TouchableOpacity>
         </View>
-      </Animated.View>
+      </View>
 
       <ScrollView style={s.scrollView} contentContainerStyle={s.content}>
-      <Animated.View entering={FadeInDown.delay(50).duration(300)}>
+      <View>
         <Text style={s.tournamentDetailName}>{tournament.name}</Text>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={FadeInDown.delay(100).duration(300)} style={s.modeToggle}>
+      <View style={s.modeToggle}>
         <Text style={[s.modeLabel, !isBestBall && s.modeLabelActive]}>Stableford</Text>
         <Switch
           value={isBestBall}
@@ -182,9 +182,9 @@ export default function HomeScreen({ navigation }) {
           thumbColor="#fff"
         />
         <Text style={[s.modeLabel, isBestBall && s.modeLabelActive]}>Best Ball</Text>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={FadeInDown.delay(150).duration(300).springify()} style={s.card}>
+      <View style={s.card}>
         <Text style={s.cardTitle}>LEADERBOARD</Text>
         {leaderboard.map((entry, i) => {
           const rankColors = [theme.semantic.rank.gold, theme.semantic.rank.silver, theme.semantic.rank.bronze];
@@ -202,10 +202,10 @@ export default function HomeScreen({ navigation }) {
             </View>
           );
         })}
-      </Animated.View>
+      </View>
 
       {completedRounds.length > 0 && (
-        <Animated.View entering={FadeInDown.delay(200).duration(300).springify()} style={s.card}>
+        <View style={s.card}>
           <Text style={s.cardTitle}>RESULTADOS POR RONDA</Text>
           <FlatList
             horizontal
@@ -236,7 +236,7 @@ export default function HomeScreen({ navigation }) {
               </>
             ) : null;
           })()}
-        </Animated.View>
+        </View>
       )}
 
       {(() => {
@@ -245,7 +245,7 @@ export default function HomeScreen({ navigation }) {
         const canPrev = selectedRound > 0;
         const canNext = selectedRound < tournament.rounds.length - 1;
         return (
-          <Animated.View entering={FadeInDown.delay(250).duration(300).springify()} style={s.card}>
+          <View style={s.card}>
             <View style={s.roundNavHeader}>
               <TouchableOpacity
                 style={[s.roundNavBtn, !canPrev && s.roundNavBtnDisabled]}
@@ -294,11 +294,11 @@ export default function HomeScreen({ navigation }) {
                 <Text style={s.secondaryBtnText}>Siguiente Ronda</Text>
               </TouchableOpacity>
             )}
-          </Animated.View>
+          </View>
         );
       })()}
 
-      <Animated.View entering={FadeInDown.delay(300).duration(300)}>
+      <View>
         <TouchableOpacity
           style={s.secondaryBtn}
           onPress={() => navigation.navigate('EditTournament')}
@@ -307,9 +307,9 @@ export default function HomeScreen({ navigation }) {
           <Feather name="settings" size={16} color={theme.accent.primary} />
           <Text style={s.secondaryBtnText}>Editar Torneo</Text>
         </TouchableOpacity>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={FadeInDown.delay(350).duration(300)} style={s.libraryRow}>
+      <View style={s.libraryRow}>
         <TouchableOpacity style={s.libraryBtn} onPress={() => navigation.navigate('PlayersLibrary')} activeOpacity={0.7}>
           <Feather name="users" size={16} color={theme.text.secondary} />
           <Text style={s.libraryBtnText}>Jugadores</Text>
@@ -318,7 +318,7 @@ export default function HomeScreen({ navigation }) {
           <Feather name="map" size={16} color={theme.text.secondary} />
           <Text style={s.libraryBtnText}>Campos</Text>
         </TouchableOpacity>
-      </Animated.View>
+      </View>
 
       <TouchableOpacity style={s.deleteBtn} onPress={() => confirmDelete(tournament)} activeOpacity={0.7}>
         <Feather name="trash-2" size={16} color={theme.destructive} />
@@ -384,7 +384,7 @@ function BestBallRoundCard({ round, players, settings, theme, s }) {
 }
 
 const makeStyles = (t) => StyleSheet.create({
-  screen: { flex: 1, backgroundColor: t.bg.primary },
+  screen: { flex: 1, backgroundColor: t.bg.primary, overflow: 'hidden' },
   scrollView: { flex: 1 },
   content: { padding: 20, paddingTop: 16, paddingBottom: 100 },
 

@@ -3,7 +3,7 @@ import {
   View, Text, TextInput, TouchableOpacity,
   StyleSheet, ScrollView, Alert,
 } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+
 import { Feather } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { createTournament, saveTournament, randomPairs, DEFAULT_SETTINGS } from '../store/tournamentStore';
@@ -128,13 +128,13 @@ export default function SetupScreen({ navigation }) {
   return (
     <View style={s.screen}>
       {/* Header - OUTSIDE ScrollView */}
-      <Animated.View entering={FadeIn.duration(300)} style={s.header}>
+      <View style={s.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={s.backBtn}>
           <Feather name="chevron-left" size={22} color={theme.accent.primary} />
         </TouchableOpacity>
         <Text style={s.headerTitle}>New Tournament</Text>
         <View style={{ width: 22 }} />
-      </Animated.View>
+      </View>
 
       <ScrollView style={s.scrollView} contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
       {/* Tournament Name */}
@@ -316,6 +316,7 @@ function makeStyles(theme) {
     screen: {
       flex: 1,
       backgroundColor: theme.bg.primary,
+      overflow: 'hidden',
     },
     scrollView: {
       flex: 1,

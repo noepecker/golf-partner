@@ -152,7 +152,7 @@ export default function NextRoundScreen({ navigation, route }) {
   if (phase === 'reveal') {
     return (
       <View style={s.fullscreen}>
-        <Animated.View
+        <View
           style={[
             s.revealPairCard,
             {
@@ -166,9 +166,9 @@ export default function NextRoundScreen({ navigation, route }) {
           <Text style={s.revealPairNames}>{nextPairs[0][0].name}</Text>
           <Text style={s.revealAmpersand}>&</Text>
           <Text style={s.revealPairNames}>{nextPairs[0][1].name}</Text>
-        </Animated.View>
+        </View>
 
-        <Animated.View
+        <View
           style={[
             s.revealPairCard,
             s.revealPairCard2,
@@ -183,9 +183,9 @@ export default function NextRoundScreen({ navigation, route }) {
           <Text style={s.revealPairNames}>{nextPairs[1][0].name}</Text>
           <Text style={s.revealAmpersand}>&</Text>
           <Text style={s.revealPairNames}>{nextPairs[1][1].name}</Text>
-        </Animated.View>
+        </View>
 
-        <Animated.View
+        <View
           style={[
             s.revealActions,
             {
@@ -209,7 +209,7 @@ export default function NextRoundScreen({ navigation, route }) {
               {revealOnly ? "Let's Play!" : `Start Round ${roundIndex + 1}`}
             </Text>
           </TouchableOpacity>
-        </Animated.View>
+        </View>
       </View>
     );
   }
